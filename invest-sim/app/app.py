@@ -1,9 +1,10 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
+import streamlit as st  # pyright: ignore[reportMissingImports]
+import pandas as pd  # pyright: ignore[reportMissingImports]
+import numpy as np  # pyright: ignore[reportMissingImports]
+import plotly.graph_objects as go  # pyright: ignore[reportMissingImports]
 from datetime import datetime, timedelta
 from statistics import NormalDist
+from typing import Optional
 
 # 引入后端桥接 (保持原有引用)
 from bridge import InvestSimBridge
@@ -275,8 +276,14 @@ def render_hud_card(label, value, sub_value=None, sub_color=COLORS['text_sub']):
     """渲染 HTML 风格的 HUD 卡片 (Deprecated in favor of st.metric for this version but kept for compatibility)"""
     st.metric(label, value, sub_value)
 
+<<<<<<< Updated upstream
 def describe_input_model(model: dict | None) -> str:
     if not model: return "Default: Normal Distribution"
+=======
+def describe_input_model(model: Optional[dict]) -> str:
+    if not model:
+        return "输入模型：默认 normal 分布。"
+>>>>>>> Stashed changes
     params = model.get("params", {})
     params_text = ", ".join(f"{k}={v}" for k, v in params.items()) or "N/A"
     return f"Model: {model.get('dist_name', 'normal')} ({params_text})"

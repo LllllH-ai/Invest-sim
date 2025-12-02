@@ -47,7 +47,10 @@
         "**/.pytest_cache": true,
         "**/.mypy_cache": true,
         "**/invest_sim.egg-info": true
-    }
+    },
+    "cursorpyright.analysis.autoImportCompletions": true,
+    "cursorpyright.analysis.diagnosticMode": "workspace",
+    "cursorpyright.analysis.typeCheckingMode": "basic"
 }
 
 
