@@ -6,7 +6,7 @@ from dataclasses import dataclass
 class OptionLeg:
     """
     Represents a single option leg in a multi-leg strategy.
-    
+
     Attributes:
         option_type: "call" or "put"
         position_side: "long" or "short"
@@ -17,15 +17,13 @@ class OptionLeg:
     position_side: str
     strike: float
     contract_size: int
-    
+
     def __post_init__(self):
-        """Normalize option_type and position_side to lowercase."""
         self.option_type = self.option_type.lower()
         self.position_side = self.position_side.lower()
-    
+
     @property
     def multiplier(self) -> int:
-        """Returns 1 for long positions, -1 for short positions."""
         return 1 if self.position_side == "long" else -1
 
 
@@ -106,12 +104,6 @@ class OptionMarginSimulator:
         daily_return_vol,
         reference_equity,
         seed=12345,
-        enable_hedge=False,
-        hedge_frequency=1,
-        hedge_threshold=0.0,
-        dynamic_vol=False,
-        vol_sensitivity=0.0,
-        legs=None,
     ):
         self.option_type = option_type.lower()
         self.position_side = position_side
@@ -128,12 +120,6 @@ class OptionMarginSimulator:
         self.daily_return_vol = daily_return_vol
         self.reference_equity = reference_equity
         self.seed = seed
-        self.enable_hedge = enable_hedge
-        self.hedge_frequency = hedge_frequency
-        self.hedge_threshold = hedge_threshold
-        self.dynamic_vol = dynamic_vol
-        self.vol_sensitivity = vol_sensitivity
-        self.legs = legs if legs is not None else []
 
     def _rng(self):
         return np.random.default_rng(self.seed)
